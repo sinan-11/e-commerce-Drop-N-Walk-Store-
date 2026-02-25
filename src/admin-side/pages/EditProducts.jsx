@@ -202,7 +202,7 @@ function EditProducts() {
               onClick={addImage}
               className="mt-2 px-4 py-2 bg-slate-800 text-white rounded"
             >
-              + Add Image
+              + Add Picture
             </button>
           </div>
 
