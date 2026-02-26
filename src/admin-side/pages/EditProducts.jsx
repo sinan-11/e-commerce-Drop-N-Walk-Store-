@@ -27,13 +27,11 @@ function EditProducts() {
       .get("http://localhost:5000/products")
       .then(res => {
         const product = res.data.find(p => String(p.id) === String(id))
-
         if (!product) {
           toast.error("Product not found")
           navigate("/admin/products")
           return
         }
-
         setForm({
           name: product.name || "",
           brand: product.brand || "",
@@ -50,9 +48,8 @@ function EditProducts() {
   }, [id, navigate])
 
   /* ================= HANDLERS ================= */
-  const handleChange = (e) => {
+  const handleChange = e =>
     setForm({ ...form, [e.target.name]: e.target.value })
-  }
 
   const handleImageChange = (index, value) => {
     const updated = [...form.images]
@@ -60,28 +57,25 @@ function EditProducts() {
     setForm({ ...form, images: updated })
   }
 
-  const addImage = () => {
+  const addImage = () =>
     setForm({ ...form, images: [...form.images, ""] })
-  }
 
-  const removeImage = (index) => {
+  const removeImage = index =>
     setForm({
       ...form,
       images: form.images.filter((_, i) => i !== index)
     })
-  }
 
-  const toggleSize = (size) => {
+  const toggleSize = size =>
     setForm(prev => ({
       ...prev,
       sizes: prev.sizes.includes(size)
         ? prev.sizes.filter(s => s !== size)
         : [...prev.sizes, size]
     }))
-  }
 
- 
-  const handleSubmit = (e) => {
+  /* ================= SUBMIT ================= */
+  const handleSubmit = e => {
     e.preventDefault()
     setSaving(true)
 
@@ -100,170 +94,229 @@ function EditProducts() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-gray-500">
-        Loading product...
+      <div className="min-h-screen bg-zinc-50 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-7 h-7 border-2 border-zinc-200 border-t-zinc-900 rounded-full animate-spin" />
+          <p className="text-xs tracking-widest uppercase text-zinc-400">
+            Loading product
+          </p>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow">
+    <div className="min-h-screen bg-zinc-50 px-6 py-16">
+      <div className="max-w-4xl mx-auto">
 
-        <h2 className="text-2xl font-semibold mb-6">Edit Product</h2>
+        {/* HEADER */}
+        <div className="mb-10">
+          <p className="text-xs uppercase tracking-[0.25em] text-zinc-400 font-semibold">
+            Inventory
+          </p>
+          <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 mt-1">
+            Edit Product
+          </h1>
+        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        {/* FORM CARD */}
+        <div className="bg-white border border-zinc-200 rounded-2xl shadow-sm p-8">
+          <form onSubmit={handleSubmit} className="space-y-10">
 
-         
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="Product Name"
-            className="w-full p-3 border rounded-lg"
-            required
-          />
-
-          
-          <div className="grid grid-cols-3 gap-4">
-            <input
-              name="brand"
-              value={form.brand}
-              onChange={handleChange}
-              placeholder="Brand"
-              className="p-3 border rounded-lg"
-            />
-
-            <input
-              name="category"
-              value={form.category}
-              onChange={handleChange}
-              placeholder="Category"
-              className="p-3 border rounded-lg"
-            />
-
-            <select
-              name="gender"
-              value={form.gender}
-              onChange={handleChange}
-              className="p-3 border rounded-lg"
-            >
-              <option value="">Gender</option>
-              <option>Men</option>
-              <option>Women</option>
-              <option>Unisex</option>
-            </select>
-          </div>
-
-         
-          <input
-            type="number"
-            name="price"
-            value={form.price}
-            onChange={handleChange}
-            placeholder="Price"
-            className="w-full p-3 border rounded-lg"
-          />
-
-         
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            rows="4"
-            placeholder="Description"
-            className="w-full p-3 border rounded-lg"
-          />
-
-          
-          <div>
-            <p className="font-medium mb-2">Images</p>
-
-            {form.images.map((img, index) => (
-              <div key={index} className="flex gap-3 mb-2">
+            {/* BASIC INFO */}
+            <section className="space-y-6">
+              <Field label="Product Name">
                 <input
-                  value={img}
-                  onChange={(e) => handleImageChange(index, e.target.value)}
-                  placeholder={`Image URL ${index + 1}`}
-                  className="flex-1 p-2 border rounded"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  className="input"
+                  required
                 />
-                <button
-                  type="button"
-                  onClick={() => removeImage(index)}
-                  className="px-3 bg-red-600 text-white rounded"
-                >
-                  ✕
-                </button>
+              </Field>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <Field label="Brand">
+                  <input
+                    name="brand"
+                    value={form.brand}
+                    onChange={handleChange}
+                    className="input"
+                  />
+                </Field>
+
+                <Field label="Category">
+                  <input
+                    name="category"
+                    value={form.category}
+                    onChange={handleChange}
+                    className="input"
+                  />
+                </Field>
+
+                <Field label="Gender">
+                  <select
+                    name="gender"
+                    value={form.gender}
+                    onChange={handleChange}
+                    className="input bg-white"
+                  >
+                    <option value="">Select</option>
+                    <option>Men</option>
+                    <option>Women</option>
+                    <option>Unisex</option>
+                  </select>
+                </Field>
               </div>
-            ))}
 
-            <button
-              type="button"
-              onClick={addImage}
-              className="mt-2 px-4 py-2 bg-slate-800 text-white rounded"
-            >
-              + Add Picture
-            </button>
-          </div>
-
-         
-          <div className="flex gap-3 flex-wrap">
-            {form.images.map((img, i) => (
-              img && (
-                <img
-                  key={i}
-                  src={img}
-                  alt=""
-                  className="w-24 h-24 object-cover rounded border"
+              <Field label="Price">
+                <input
+                  type="number"
+                  name="price"
+                  value={form.price}
+                  onChange={handleChange}
+                  className="input"
                 />
-              )
-            ))}
-          </div>
+              </Field>
 
-         
-          <div>
-            <p className="font-medium mb-2">Sizes</p>
-            <div className="flex gap-2 flex-wrap">
-              {[6,7,8,9,10,11].map(size => (
-                <button
-                  key={size}
-                  type="button"
-                  onClick={() => toggleSize(size)}
-                  className={`px-4 py-2 rounded border ${
-                    form.sizes.includes(size)
-                      ? "bg-slate-800 text-white"
-                      : "bg-white"
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
+              <Field label="Description">
+                <textarea
+                  rows="4"
+                  name="description"
+                  value={form.description}
+                  onChange={handleChange}
+                  className="input resize-none"
+                />
+              </Field>
+            </section>
+
+            {/* IMAGES */}
+            <section>
+              <h3 className="section-title">Product Images</h3>
+
+              <div className="space-y-3">
+                {form.images.map((img, i) => (
+                  <div key={i} className="flex gap-3">
+                    <input
+                      value={img}
+                      onChange={e => handleImageChange(i, e.target.value)}
+                      placeholder={`Image URL ${i + 1}`}
+                      className="input flex-1"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeImage(i)}
+                      className="px-3 rounded-lg bg-red-50 text-red-600 hover:bg-red-100"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={addImage}
+                className="mt-4 px-4 py-2 text-sm rounded-lg bg-zinc-900 text-white hover:bg-zinc-700"
+              >
+                + Add Image
+              </button>
+
+              {form.images.length > 0 && (
+                <div className="flex gap-3 flex-wrap mt-4">
+                  {form.images.map(
+                    (img, i) =>
+                      img && (
+                        <img
+                          key={i}
+                          src={img}
+                          alt=""
+                          className="w-24 h-24 object-cover rounded-xl border"
+                        />
+                      )
+                  )}
+                </div>
+              )}
+            </section>
+
+            {/* SIZES */}
+            <section>
+              <h3 className="section-title">Available Sizes</h3>
+              <div className="flex gap-2 flex-wrap">
+                {[6, 7, 8, 9, 10, 11].map(size => (
+                  <button
+                    key={size}
+                    type="button"
+                    onClick={() => toggleSize(size)}
+                    className={`px-4 py-2 rounded-lg border text-sm font-medium transition
+                      ${
+                        form.sizes.includes(size)
+                          ? "bg-zinc-900 text-white border-zinc-900"
+                          : "bg-white hover:border-zinc-400"
+                      }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </section>
+
+            {/* ACTIONS */}
+            <div className="flex flex-col items-end gap-3 pt-6 border-t">
+              <button
+                type="button"
+                onClick={() => navigate("/admin/products")}
+                className="w-40 px-6 py-2 rounded-lg border text-sm hover:bg-zinc-50"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="submit"
+                disabled={saving}
+                className="w-40 px-6 py-2 rounded-lg bg-zinc-900 text-white text-sm hover:bg-zinc-700"
+              >
+                {saving ? "Saving..." : "Update Product"}
+              </button>
             </div>
-          </div>
 
-          
-          <div className="flex justify-end gap-3">
-            <button
-              type="button"
-              onClick={() => navigate("/admin/products")}
-              className="px-4 py-2 border rounded"
-            >
-              Cancel
-            </button>
-
-            <button
-              type="submit"
-              disabled={saving}
-              className="px-6 py-2 bg-slate-800 text-white rounded"
-            >
-              {saving ? "Saving..." : "Update Product"}
-            </button>
-          </div>
-
-        </form>
+          </form>
+        </div>
       </div>
+
+      {/* SHARED STYLES */}
+      <style>{`
+        .input {
+          width: 100%;
+          padding: 0.75rem;
+          border: 1px solid #e4e4e7;
+          border-radius: 0.75rem;
+          font-size: 0.875rem;
+          outline: none;
+        }
+        .input:focus {
+          border-color: #18181b;
+          box-shadow: 0 0 0 2px rgba(24,24,27,0.08);
+        }
+        .section-title {
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: #18181b;
+          margin-bottom: 0.75rem;
+        }
+      `}</style>
     </div>
   )
 }
+
+/* ===== FIELD WRAPPER ===== */
+const Field = ({ label, children }) => (
+  <div>
+    <label className="block text-xs font-medium text-zinc-500 mb-1">
+      {label}
+    </label>
+    {children}
+  </div>
+)
 
 export default EditProducts

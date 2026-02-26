@@ -16,110 +16,226 @@ function AdminProducts() {
       .finally(() => setLoading(false))
   }, [])
 
-  const handleDelete = (id) => {
-    if (!window.confirm("Are you sure you want to delete this product?")) return
+  /* ===== CONFIRM DELETE ===== */
+  const confirmDelete = (onConfirm) => {
+    toast(
+      ({ closeToast }) => (
+        <div className="space-y-4">
+          <p className="text-sm font-semibold text-zinc-900">
+            Delete this product?
+          </p>
+          <p className="text-xs text-zinc-500">
+            This action cannot be undone.
+          </p>
+          <div className="flex justify-end gap-2 pt-2">
+            <button
+              onClick={closeToast}
+              className="px-3 py-1.5 text-xs rounded-lg border hover:bg-zinc-50"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => {
+                onConfirm()
+                closeToast()
+              }}
+              className="px-3 py-1.5 text-xs rounded-lg bg-red-600 hover:bg-red-500 text-white shadow-sm"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      ),
+      { autoClose: false }
+    )
+  }
 
-    axios
-      .delete(`http://localhost:5000/products/${id}`)
-      .then(() => {
-        setProducts(prev => prev.filter(p => p.id !== id))
-        toast.success("Product deleted")
-      })
-      .catch(() => toast.error("Delete failed"))
+  const deleteProduct = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/products/${id}`)
+      setProducts(prev => prev.filter(p => p.id !== id))
+      toast.success("Product deleted")
+    } catch {
+      toast.error("Delete failed")
+    }
+  }
+
+  const handleDelete = (id) => {
+    confirmDelete(() => deleteProduct(id))
   }
 
   return (
-    
-    <div className="p-8 bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen">
-      <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
-<div className="grid grid-cols-3 items-center mb-8 pb-4 border-b border-gray-200">
- 
-  <h2 className="col-span-2 text-3xl font-semibold text-gray-900 tracking-tight">
-    Products
-  </h2>
+    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white px-4 sm:px-8 py-12">
+      <div className="max-w-6xl mx-auto space-y-10">
 
-  
-  <div className="flex justify-center">
-    <button
-      onClick={() => navigate("/admin/products/add")}
-      className="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium
-                 bg-slate-800 text-white rounded-lg
-                 hover:bg-slate-900 transition-all
-                 shadow-sm hover:shadow-md"
-    >
-      + Add Product
-    </button>
-  </div>
-</div>
-  <div className="overflow-x-auto rounded-xl border border-gray-200">
-    <table className="w-full border-collapse">
-      <thead>
-        <tr className="bg-gray-100 text-left text-xs uppercase tracking-wider text-gray-600">
-          <th className="p-4">Image</th>
-          <th className="p-4">Name</th>
-          <th className="p-4 text-center">Actions</th>
-        </tr>
-      </thead>
+        {/* HEADER */}
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.3em] text-zinc-400 font-semibold">
+              Inventory
+            </p>
+            <h1 className="text-2xl sm:text-3xl font-semibold text-zinc-900 tracking-tight">
+              Products
+            </h1>
+          </div>
 
-      <tbody>
-        {loading && (
-          <tr>
-            <td colSpan="3" className="p-10 text-center text-gray-500">
+          <button
+            onClick={() => navigate("/admin/products/add")}
+            className="px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-700 text-white text-sm font-medium shadow-md hover:shadow-lg transition-all"
+          >
+            + Add Product
+          </button>
+        </div>
+
+        {/* ================= DESKTOP TABLE ================= */}
+        <div className="hidden md:block bg-white rounded-2xl shadow-[0_10px_30px_-15px_rgba(0,0,0,0.25)] overflow-hidden">
+
+          {/* TABLE HEADER */}
+          <div className="grid grid-cols-[90px_1fr_180px] px-6 py-4 bg-zinc-50 border-b">
+            <span className="table-head">Image</span>
+            <span className="table-head">Product</span>
+            <span className="table-head text-right">Actions</span>
+          </div>
+
+          {loading && (
+            <div className="py-28 text-center text-sm text-zinc-400">
               Loading products...
-            </td>
-          </tr>
+            </div>
+          )}
+
+          {!loading && products.map(item => (
+            <div
+              key={item.id}
+              className="grid grid-cols-[90px_1fr_180px] px-6 py-5 items-center border-b last:border-none hover:bg-zinc-50 transition"
+            >
+              {/* IMAGE */}
+              <img
+                src={item.images?.[0]}
+                alt={item.name}
+                className="w-14 h-14 rounded-xl object-cover ring-1 ring-zinc-200"
+              />
+
+              {/* INFO */}
+              <div>
+                <p className="text-sm font-medium text-zinc-900">
+                  {item.name}
+                </p>
+                <p className="text-xs text-zinc-400">
+                  ID: {item.id}
+                </p>
+              </div>
+
+              {/* ACTIONS */}
+              <div className="flex justify-end gap-2">
+                <button
+                  onClick={() => navigate(`/admin/products/edit/${item.id}`)}
+                  className="action-btn"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(item.id)}
+                  className="action-btn danger"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+
+          {!loading && products.length === 0 && (
+            <div className="py-28 text-center text-sm text-zinc-400">
+              No products found
+            </div>
+          )}
+        </div>
+
+        {/* ================= MOBILE CARDS ================= */}
+        <div className="md:hidden space-y-4">
+          {loading && (
+            <p className="text-center text-sm text-zinc-400">
+              Loading products...
+            </p>
+          )}
+
+          {!loading && products.map(item => (
+            <div
+              key={item.id}
+              className="bg-white rounded-2xl shadow-sm border border-zinc-200 p-4 flex gap-4"
+            >
+              <img
+                src={item.images?.[0]}
+                alt={item.name}
+                className="w-20 h-20 rounded-xl object-cover ring-1 ring-zinc-200"
+              />
+
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-zinc-900">
+                  {item.name}
+                </p>
+                <p className="text-xs text-zinc-400 mb-3">
+                  ID: {item.id}
+                </p>
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => navigate(`/admin/products/edit/${item.id}`)}
+                    className="flex-1 px-3 py-2 text-xs rounded-lg bg-zinc-900 text-white shadow-sm"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(item.id)}
+                    className="flex-1 px-3 py-2 text-xs rounded-lg bg-red-50 text-red-600"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {!loading && products.length === 0 && (
+            <p className="text-center text-sm text-zinc-400">
+              No products found
+            </p>
+          )}
+        </div>
+
+        {/* FOOTER */}
+        {!loading && products.length > 0 && (
+          <p className="text-xs text-zinc-400 text-right">
+            {products.length} products total
+          </p>
         )}
+      </div>
 
-        {!loading && products.map(item => (
-         <tr
-          key={item.id}
-    className="border-b last:border-none hover:bg-gray-50 transition-colors"
-           >
-    <td className="p-4">
-      <img
-        src={item.images?.[0]}
-        alt={item.name}
-        className="w-20 h-20 object-cover rounded-lg border shadow-sm"
-      />
-    </td>
-
-    <td className="p-4 text-base font-medium text-gray-900">
-      {item.name}
-    </td>
-
-    <td className="p-4 text-center space-x-3">
-     <button
-  className="px-4 py-1.5 text-sm font-medium bg-slate-700 text-white rounded-lg hover:bg-slate-800 transition-colors shadow-sm"
-  onClick={() => navigate(`/admin/products/edit/${item.id}`)}
-      >
-             Edit
-              </button>
-
-      <button
-        onClick={() => handleDelete(item.id)}
-        className="px-4 py-1.5 text-sm font-medium bg-red-600 text-white rounded-lg hover:bg-red-700 transition shadow-sm"
-      >
-        Delete
-      </button>
-    </td>
-  </tr>
-              ))}
-
-  {!loading && products.length === 0 && (
-    <tr>
-      <td colSpan="3" className="p-10 text-center text-gray-500">
-        No products found
-      </td>
-    </tr>
-  )}
-</tbody>
-</table>
-</div>
-
-</div>
-
-</div>
-)
+      {/* SHARED STYLES */}
+      <style>{`
+        .table-head {
+          font-size: 11px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          color: #a1a1aa;
+        }
+        .action-btn {
+          padding: 6px 14px;
+          font-size: 12px;
+          border-radius: 10px;
+          background: #f4f4f5;
+          transition: all 0.15s ease;
+        }
+        .action-btn:hover {
+          background: #e4e4e7;
+        }
+        .action-btn.danger {
+          background: #fee2e2;
+          color: #dc2626;
+        }
+      `}</style>
+    </div>
+  )
 }
 
 export default AdminProducts

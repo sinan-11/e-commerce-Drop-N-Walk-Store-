@@ -5,7 +5,7 @@ import { toast } from "react-toastify"
 
 function ProductDetails() {
   const { id } = useParams()
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
   const [prod, setProd] = useState(null)
   const [mainImg, setMainImg] = useState("")
@@ -18,67 +18,84 @@ function ProductDetails() {
       .then((res) => {
         setProd(res.data)
         setMainImg(res.data.images?.[0])
-        setLoading(false)
       })
-      .catch((err) => {
-        console.error(err)
-        setLoading(false)
-      })
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false))
   }, [id])
 
   if (loading) return <p className="text-center mt-10">Loading...</p>
   if (!prod) return <p className="text-center mt-10">Product not found</p>
 
-  function cartHandler(){
+  /* ================= FIXED CART HANDLER ================= */
+  async function cartHandler() {
+    const localUser = JSON.parse(localStorage.getItem("user"))
 
-
-    const user=JSON.parse(localStorage.getItem('user'))
-
-
-    if(!user){
+    if (!localUser) {
       toast.error("Login First")
       navigate("/login")
-      return 
+      return
     }
-    const updatedCart = user.cart || []
-    const existingItem=user.cart.find((v)=>{
-  return v.id==prod.id && v.size===selectedSize
-    })
-    if (existingItem) {
-    existingItem.quantity += 1 
-    toast.success("item added")
-  } else {
-    updatedCart.push({
-       id: prod.id,
-      name: prod.name,
-      price: prod.price,
-      image: prod.images?.[0],
-      size: selectedSize, 
-      quantity: 1
-    })
-  }
 
-    axios.patch(`http://localhost:5000/users/${user.id}`,{
-      cart:updatedCart
-    
-  }  )
-  .then(() => {
-      // Update localStorage
+    if (!selectedSize) {
+      toast.error("Please select a size")
+      return
+    }
+
+    try {
+      // 🔥 Get fresh user from DB
+      const res = await axios.get(
+        `http://localhost:5000/users/${localUser.id}`
+      )
+
+      const user = res.data
+
+      // 🚫 Block check
+      if (user.blocked) {
+        toast.error("Your account has been blocked by admin")
+        localStorage.removeItem("user")
+        navigate("/login")
+        return
+      }
+
+      const updatedCart = [...(user.cart || [])]
+
+      const existingItem = updatedCart.find(
+        (v) => v.id === prod.id && v.size === selectedSize
+      )
+
+      if (existingItem) {
+        existingItem.quantity += 1
+      } else {
+        updatedCart.push({
+          id: prod.id,
+          name: prod.name,
+          price: prod.price,
+          image: prod.images?.[0],
+          size: selectedSize,
+          quantity: 1
+        })
+      }
+
+      await axios.patch(`http://localhost:5000/users/${user.id}`, {
+        cart: updatedCart
+      })
+
+      // sync localStorage
       localStorage.setItem(
         "user",
         JSON.stringify({ ...user, cart: updatedCart })
       )
 
       toast.success("Added to cart ✅")
-      navigate(`/collections`)
-    })
-    .catch((err) => console.error(err))
-
+      navigate("/collections")
+    } catch (err) {
+      console.error(err)
+      toast.error("Failed to add to cart")
+    }
   }
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-10">
-
       {/* LEFT: IMAGES */}
       <div>
         <div className="bg-gray-100 rounded-xl overflow-hidden mb-4">
@@ -128,9 +145,11 @@ function ProductDetails() {
                 key={size}
                 onClick={() => setSelectedSize(size)}
                 className={`px-4 py-2 border rounded
-                  ${selectedSize === size
-                    ? "bg-black text-white"
-                    : "hover:border-black"}`}
+                  ${
+                    selectedSize === size
+                      ? "bg-black text-white"
+                      : "hover:border-black"
+                  }`}
               >
                 {size}
               </button>
@@ -141,10 +160,13 @@ function ProductDetails() {
         {/* ADD TO CART */}
         <button
           disabled={!selectedSize}
+          onClick={cartHandler}
           className={`mt-8 w-full py-3 rounded-full font-semibold transition
-            ${selectedSize
-              ? "bg-black text-white hover:bg-gray-800"
-              : "bg-gray-300 cursor-not-allowed"}` }onClick={()=>cartHandler()}
+            ${
+              selectedSize
+                ? "bg-black text-white hover:bg-gray-800"
+                : "bg-gray-300 cursor-not-allowed"
+            }`}
         >
           Add to Cart
         </button>

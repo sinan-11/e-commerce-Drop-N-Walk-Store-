@@ -5,35 +5,19 @@
       "name": "Admin",
       "email": "admin@gmail.com",
       "password": "admin123",
-      "role": "admin"
+      "role": "admin",
+      "blocked": false
     },
     {
-      "id": "0c01",
+      "id": "ac76",
       "name": "sinan",
       "email": "sinan@gmail.com",
       "password": "1234",
       "role": "user",
-      "cart": [
-        {
-          "id": "1",
-          "name": "Air Jordan 1 Mid",
-          "price": 7999,
-          "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
-          "size": 8,
-          "quantity": 1
-        },
-        {
-          "id": "1",
-          "name": "Air Jordan 1 Mid",
-          "price": 7999,
-          "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
-          "size": 9,
-          "quantity": 1
-        }
-      ],
+      "cart": [],
       "orders": [
         {
-          "orderId": "ORD-1771480594843",
+          "orderId": "ORD-1772085041732",
           "items": [
             {
               "id": "1",
@@ -41,14 +25,6 @@
               "price": 7999,
               "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
               "size": 7,
-              "quantity": 2
-            },
-            {
-              "id": "1",
-              "name": "Air Jordan 1 Mid",
-              "price": 7999,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 8,
               "quantity": 1
             },
             {
@@ -56,15 +32,82 @@
               "name": "Nike Court Shot",
               "price": 7495,
               "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-FQ8146-109_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 8,
+              "size": 7,
               "quantity": 1
-            },
+            }
+          ],
+          "total": 15494,
+          "address": {
+            "name": "sinan",
+            "phone": "7894561230",
+            "street": "kannur",
+            "city": "kannur",
+            "state": "kerla",
+            "pincode": "123456"
+          },
+          "paymentMethod": "COD",
+          "status": "Shipped",
+          "date": "2/26/2026, 11:20:41 AM"
+        },
+        {
+          "orderId": "ORD-1772085377328",
+          "items": [
+            {
+              "id": "3",
+              "name": "Nike V5 RNR",
+              "price": 3695,
+              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-HJ5228-010_1.jpg?rnd=20200526195200&tr=w-1080",
+              "size": 7,
+              "quantity": 1
+            }
+          ],
+          "total": 3695,
+          "address": {
+            "name": "sinan",
+            "phone": "9633507064",
+            "street": "kannur",
+            "city": "kannur",
+            "state": "kerala",
+            "pincode": "123456"
+          },
+          "paymentMethod": "COD",
+          "status": "Cancelled",
+          "date": "2/26/2026, 11:26:17 AM"
+        },
+        {
+          "orderId": "ORD-1772088103646",
+          "items": [
             {
               "id": "1",
               "name": "Air Jordan 1 Mid",
               "price": 7999,
               "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 9,
+              "size": 8,
+              "quantity": 1
+            }
+          ],
+          "total": 7999,
+          "address": {
+            "name": "sinan",
+            "phone": "1232345666",
+            "street": "kerala",
+            "city": "kerala",
+            "state": "kerala",
+            "pincode": "123444"
+          },
+          "paymentMethod": "COD",
+          "status": "Out for Delivery",
+          "date": "2/26/2026, 12:11:43 PM"
+        },
+        {
+          "orderId": "ORD-1772096909872",
+          "items": [
+            {
+              "id": "5",
+              "name": "Adidas SWITCH FWD 2",
+              "price": 7999,
+              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/1/3/13076c7YADIDA00085895_1.jpg?rnd=20200526195200&tr=w-1080",
+              "size": 10,
               "quantity": 1
             },
             {
@@ -76,455 +119,11 @@
               "quantity": 1
             },
             {
-              "id": "2",
-              "name": "Nike Court Shot",
-              "price": 7495,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-FQ8146-109_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 9,
-              "quantity": 2
-            },
-            {
-              "id": "3",
-              "name": "Nike V5 RNR",
-              "price": 3695,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-HJ5228-010_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 8,
-              "quantity": 1
-            }
-          ],
-          "total": 63175,
-          "address": {
-            "name": "sinana",
-            "phone": "1111111111",
-            "street": "ddd",
-            "city": "dd",
-            "state": "ddd",
-            "pincode": "111111"
-          },
-          "paymentMethod": "COD",
-          "status": "Placed",
-          "date": "2/19/2026, 11:26:34 AM"
-        }
-      ]
-    },
-    {
-      "id": "fc9a",
-      "name": "ali",
-      "email": "ali@gmail.com",
-      "password": "1234",
-      "role": "user",
-      "cart": [],
-      "orders": [
-        {
-          "orderId": "ORD-1771420525306",
-          "items": [
-            {
-              "id": "1",
-              "name": "Air Jordan 1 Mid",
-              "price": 7999,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 8,
-              "quantity": 1
-            }
-          ],
-          "total": 7999,
-          "address": {
-            "name": "ali",
-            "phone": "123456789",
-            "street": "kannur",
-            "city": "ccew",
-            "state": "ccew",
-            "pincode": "670777"
-          },
-          "paymentMethod": "COD",
-          "status": "Placed",
-          "date": "2/18/2026, 6:45:25 PM"
-        },
-        {
-          "orderId": "ORD-1771420978157",
-          "items": [
-            {
-              "id": "1",
-              "name": "Air Jordan 1 Mid",
-              "price": 7999,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 8,
-              "quantity": 1
-            }
-          ],
-          "total": 7999,
-          "address": {
-            "name": "sinan",
-            "phone": "111111",
-            "street": "dcdasc",
-            "city": "cddsc",
-            "state": "cdsdsc",
-            "pincode": "3333"
-          },
-          "paymentMethod": "COD",
-          "status": "Placed",
-          "date": "2/18/2026, 6:52:58 PM"
-        },
-        {
-          "orderId": "ORD-1771422812439",
-          "items": [
-            {
               "id": "3",
               "name": "Nike V5 RNR",
               "price": 3695,
               "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-HJ5228-010_1.jpg?rnd=20200526195200&tr=w-1080",
               "size": 9,
-              "quantity": 1
-            },
-            {
-              "id": "2",
-              "name": "Nike Court Shot",
-              "price": 7495,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-FQ8146-109_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 9,
-              "quantity": 1
-            }
-          ],
-          "total": 11190,
-          "address": {
-            "name": "ewqexcqwx",
-            "phone": "wqecxwqe",
-            "street": "ewqcwqc",
-            "city": "cewwc",
-            "state": "cec",
-            "pincode": "ceewq"
-          },
-          "paymentMethod": "COD",
-          "status": "Placed",
-          "date": "2/18/2026, 7:23:32 PM"
-        },
-        {
-          "orderId": "ORD-1771474057828",
-          "items": [
-            {
-              "id": "7",
-              "name": "Puma Speedcat ",
-              "price": 8999,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/1/3/13076c7YPUMAX00445132_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 9,
-              "quantity": 1
-            },
-            {
-              "id": "11",
-              "name": "New Balance BB550 Casual",
-              "price": 12999,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/1/3/13076c7YNEWBA00026476_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 8,
-              "quantity": 1
-            }
-          ],
-          "total": 21998,
-          "address": {
-            "name": "ali hafiz",
-            "phone": "321456987",
-            "street": "kanndsc",
-            "city": "fsvsdv",
-            "state": "vdsvds",
-            "pincode": "1234rwgttte"
-          },
-          "paymentMethod": "COD",
-          "status": "Placed",
-          "date": "2/19/2026, 9:37:37 AM"
-        },
-        {
-          "orderId": "ORD-1771477532233",
-          "items": [
-            {
-              "id": "2",
-              "name": "Nike Court Shot",
-              "price": 7495,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-FQ8146-109_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 10,
-              "quantity": 2
-            },
-            {
-              "id": "1",
-              "name": "Air Jordan 1 Mid",
-              "price": 7999,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 8,
-              "quantity": 2
-            },
-            {
-              "id": "1",
-              "name": "Air Jordan 1 Mid",
-              "price": 7999,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 7,
-              "quantity": 1
-            }
-          ],
-          "total": 38987,
-          "address": {
-            "name": "sinan",
-            "phone": "addd",
-            "street": "ccd",
-            "city": "ddcv",
-            "state": "ced",
-            "pincode": "123456"
-          },
-          "paymentMethod": "COD",
-          "status": "Placed",
-          "date": "2/19/2026, 10:35:32 AM"
-        },
-        {
-          "orderId": "ORD-1771478076791",
-          "items": [
-            {
-              "id": "2",
-              "name": "Nike Court Shot",
-              "price": 7495,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-FQ8146-109_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 8,
-              "quantity": 1
-            }
-          ],
-          "total": 7495,
-          "address": {
-            "name": "sinan",
-            "phone": "1234567899",
-            "street": "dcdc",
-            "city": "dw",
-            "state": "cdc",
-            "pincode": "123546"
-          },
-          "paymentMethod": "COD",
-          "status": "Placed",
-          "date": "2/19/2026, 10:44:36 AM"
-        }
-      ]
-    },
-    {
-      "id": "95c2",
-      "name": "adil",
-      "email": "adil@gmail.com",
-      "password": "1234",
-      "cart": [],
-      "orders": [
-        {
-          "orderId": "ORD-1771423278364",
-          "items": [
-            {
-              "id": "1",
-              "name": "Air Jordan 1 Mid",
-              "price": 7999,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 8,
-              "quantity": 1
-            }
-          ],
-          "total": 7999,
-          "address": {
-            "name": "aadil",
-            "phone": "11111",
-            "street": "aaaaa",
-            "city": "aaa",
-            "state": "aaa",
-            "pincode": "11"
-          },
-          "paymentMethod": "COD",
-          "status": "Placed",
-          "date": "2/18/2026, 7:31:18 PM"
-        }
-      ]
-    },
-    {
-      "id": "2bbd",
-      "name": "qais",
-      "email": "qais@gmail.com",
-      "password": "1234",
-      "role": "user",
-      "cart": [],
-      "orders": [
-        {
-          "orderId": "ORD-1771419440734",
-          "items": [
-            {
-              "id": "12",
-              "name": "New Balance 9060",
-              "price": 9999,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/f/b/fb5a227U9060EEK_0.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 8,
-              "quantity": 1
-            },
-            {
-              "id": "2",
-              "name": "Nike Court Shot",
-              "price": 7495,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-FQ8146-109_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 8,
-              "quantity": 1
-            },
-            {
-              "id": "3",
-              "name": "Nike V5 RNR",
-              "price": 3695,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-HJ5228-010_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 9,
-              "quantity": 1
-            }
-          ],
-          "total": 21189,
-          "date": "2/18/2026, 6:27:20 PM",
-          "status": "Placed"
-        },
-        {
-          "orderId": "ORD-1771419577456",
-          "items": [
-            {
-              "id": "3",
-              "name": "Nike V5 RNR",
-              "price": 3695,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-HJ5228-010_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 8,
-              "quantity": 1
-            }
-          ],
-          "total": 3695,
-          "date": "2/18/2026, 6:29:37 PM",
-          "status": "Placed"
-        },
-        {
-          "orderId": "ORD-1771419994716",
-          "items": [
-            {
-              "id": "1",
-              "name": "Air Jordan 1 Mid",
-              "price": 7999,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 9,
-              "quantity": 1
-            }
-          ],
-          "total": 7999,
-          "address": {
-            "name": "sinan",
-            "phone": "9633507064",
-            "street": "kannur",
-            "city": "kannur",
-            "state": "kerala",
-            "pincode": "670702"
-          },
-          "paymentMethod": "COD",
-          "status": "Placed",
-          "date": "2/18/2026, 6:36:34 PM"
-        },
-        {
-          "orderId": "ORD-1771420340597",
-          "items": [
-            {
-              "id": "2",
-              "name": "Nike Court Shot",
-              "price": 7495,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-FQ8146-109_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 9,
-              "quantity": 1
-            }
-          ],
-          "total": 7495,
-          "address": {
-            "name": "sinan",
-            "phone": "1111111",
-            "street": "11 vwev",
-            "city": "dsfcdf",
-            "state": "cecvv",
-            "pincode": "2222"
-          },
-          "paymentMethod": "COD",
-          "status": "Placed",
-          "date": "2/18/2026, 6:42:20 PM"
-        }
-      ]
-    },
-    {
-      "id": "acad",
-      "name": "swalih",
-      "email": "swalih@gmail.coomn",
-      "password": "1234",
-      "role": "user",
-      "cart": []
-    },
-    {
-      "id": "8810",
-      "name": "aaa",
-      "email": "aaa@gmail.com",
-      "password": "1234",
-      "role": "user",
-      "cart": []
-    },
-    {
-      "id": "9df3",
-      "name": "sinan1",
-      "email": "sinan1@gmail.com",
-      "password": "1234",
-      "role": "user",
-      "cart": [],
-      "orders": [
-        {
-          "orderId": "ORD-1771483377494",
-          "items": [
-            {
-              "id": "1",
-              "name": "Air Jordan 1 Mid",
-              "price": 7999,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 7,
-              "quantity": 1
-            },
-            {
-              "id": "2",
-              "name": "Nike Court Shot",
-              "price": 7495,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-FQ8146-109_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 9,
-              "quantity": 1
-            },
-            {
-              "id": "2",
-              "name": "Nike Court Shot",
-              "price": 7495,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-FQ8146-109_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 10,
-              "quantity": 1
-            }
-          ],
-          "total": 22989,
-          "address": {
-            "name": "sinan",
-            "phone": "1111111111",
-            "street": "aaaaa",
-            "city": "aaa",
-            "state": "aaaa",
-            "pincode": "111111"
-          },
-          "paymentMethod": "COD",
-          "status": "Placed",
-          "date": "2/19/2026, 12:12:57 PM"
-        }
-      ]
-    },
-    {
-      "id": "ae05",
-      "name": "midlaj",
-      "email": "midlaj@gmail.com",
-      "password": "1234",
-      "role": "user",
-      "cart": [],
-      "orders": [
-        {
-          "orderId": "ORD-1771644111167",
-          "items": [
-            {
-              "id": "1",
-              "name": "Air Jordan 1 Mid",
-              "price": 7999,
-              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/5/3/5324c8eNike-554724-061_1.jpg?rnd=20200526195200&tr=w-1080",
-              "size": 7,
               "quantity": 1
             },
             {
@@ -536,18 +135,55 @@
               "quantity": 1
             }
           ],
-          "total": 12298,
+          "total": 20992,
           "address": {
-            "name": "midlaj",
-            "phone": "1111111111",
-            "street": "aaaa",
-            "city": "aaaa",
-            "state": "aaaa",
-            "pincode": "111111"
+            "name": "sinan",
+            "phone": "7894561230",
+            "street": "kannur",
+            "city": "kannur",
+            "state": "kerala",
+            "pincode": "125478"
           },
           "paymentMethod": "COD",
-          "status": "Placed",
-          "date": "2/21/2026, 8:51:51 AM"
+          "status": "Cancelled",
+          "date": "2/26/2026, 2:38:29 PM"
+        }
+      ],
+      "blocked": false
+    },
+    {
+      "id": "1426",
+      "name": "qais",
+      "email": "qais@gmail.com",
+      "password": "1234",
+      "role": "user",
+      "blocked": false,
+      "cart": [],
+      "orders": [
+        {
+          "orderId": "ORD-1772097833568",
+          "items": [
+            {
+              "id": "11",
+              "name": "New Balance BB550 Casual",
+              "price": 12999,
+              "image": "https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/1/3/13076c7YNEWBA00026476_1.jpg?rnd=20200526195200&tr=w-1080",
+              "size": 8,
+              "quantity": 1
+            }
+          ],
+          "total": 12999,
+          "address": {
+            "name": "qais",
+            "phone": "7654332232",
+            "street": "calicut",
+            "city": "calicut",
+            "state": "calicut",
+            "pincode": "369854"
+          },
+          "paymentMethod": "COD",
+          "status": "Cancelled",
+          "date": "2/26/2026, 2:53:53 PM"
         }
       ]
     }
@@ -555,7 +191,7 @@
   "products": [
     {
       "name": "Air Jordan 1 Mid",
-      "brand": "Nike",
+      "brand": "Niker",
       "category": "Sneakers",
       "gender": "Men",
       "price": 7999,
